@@ -10,14 +10,20 @@ terraform {
 }
 
 provider "aws" {
-  region  = "sa-east-1"
+  region = "sa-east-1"
 }
 
 resource "aws_instance" "app_server" {
   ami           = "ami-015e30624fffff117"
   instance_type = "t2.micro"
-  key_name = "flavio-sp"
+  key_name      = "flavio-sp"
+#  user_data     = <<-EOF
+#                 #!/bin/bash
+#                 cd /home/ubuntu
+#                 echo "<h2>Teste Busybox 2</h2>" > index.html
+#                 nohup busybox httpd -f -p 8080 &
+#                 EOF
   tags = {
-    Name = "PrimeiraInstancia"
+    Name = "TesteAWS3"
   }
 }
